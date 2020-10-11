@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		greeter();
+		String VIGENERE = scanner.next();
+		if (VIGENERE.equals("V")||VIGENERE.equals("v")) {
+			System.out.println("Geben Sie bitte den Key ein!");
+			String key = scanner.next();
+			System.out.println(
+					"Geben Sie den Klartext ein, der verschlüsselt werden soll. Bitte nur Zeichen aus dem Alphabet!");
+			String klartext = scanner.next();
+			Verschlüsseln encode = new Verschlüsseln(klartext, key);
+			encode.vigenere();
+			System.out.println(klartext.toUpperCase());
+			System.out.println(encode.vigenere());
+		} else if (VIGENERE.equals("E")||VIGENERE.equals("e")) {
+			System.out.println("Geben Sie bitte den Key ein!");
+			String key = scanner.next();
+			System.out.println(
+					"Geben Sie den Geheimtext ein, der entschlüsselt werden soll. Bitte nur Zeichen aus dem Alphabet!");
+			String geheimtext = scanner.next();
+			Entschlüsseln decode = new Entschlüsseln(geheimtext, key);
+			decode.vigenere();
+			System.out.println(geheimtext.toUpperCase());
+			System.out.println(decode.vigenere());
+		} else {
+			System.out.println("Error");
+			System.out.println("Sie haben was falsch gemacht. Führen Sie das Programm nochmal aus!");
+			System.exit(0);
+		}
+	}
+	
+	public static void greeter() {
+		System.out.println("Willkommen! Beachten Sie: Klartext, Geheimtext und Schlüssel werden automatisch in Großbuchstaben umgewandelt");
+		System.out.print("Möchten Sie einen Klartext verschlüsseln oder einen Geheimtext entschlüsseln? (V/E)-> V= Verschlüsseln; E= Entschlüsseln");
+		
+		
+	}
+
+}
