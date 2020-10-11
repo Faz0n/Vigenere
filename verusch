@@ -1,0 +1,10 @@
+\section*{Algorithmus und Berechenbarkeit}
+Die mächtigsten heute bekannten Werkzeuge zur Lösung von Problemen, die mit formalen Methoden beschrieben werden können, sind \textbf{Algorithmen }($=$ Verfahren).\\
+Ein Algorithmus ist ein schrittweise ablaufendes Umformungsverfahren von Eingaben in Ausgabenwerte, wobei für jeden Schritt die jeweils folgende Anweisung eindeutig bestimmt ist.
+\\
+Alan Turing hat sein Gedankenmodell eines Computers - eben die Turingmaschine - entwickelt, um den Begriff der Berechenbarkeit zu fassen.
+Das Ergebnis kann knapp in zwei Aussagen genannt werden:
+\\
+\glqq Alles, was berechenbar ist, ist durch eine Turingmaschine berechenbar.
+Alles, was nicht durch eine Turingmaschine berechenbar ist, ist überhaupt nicht berechenbar.\grqq
+\vspace{30pt}
