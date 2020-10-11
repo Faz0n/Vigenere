@@ -1,0 +1,153 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[left=3cm,right=3cm,top=1cm,bottom=3cm,includeheadfoot]{geometry}
+
+\title{Das Halteproblem}
+\author{Fezaan Rehman \& Akeshan Kunarajah\\ Informatik}
+\date{30.September 2020}
+
+\begin{document}
+\maketitle
+	\section*{Algorithmus und Berechenbarkeit}
+Die mächtigsten heute bekannten Werkzeuge zur Lösung von Problemen, die mit formalen Methoden beschrieben werden können, sind \textbf{Algorithmen }($=$ Verfahren).\\
+Ein Algorithmus ist ein schrittweise ablaufendes Umformungsverfahren von Eingaben in Ausgabenwerte, wobei für jeden Schritt die jeweils folgende Anweisung eindeutig bestimmt ist.
+\\
+Alan Turing hat sein Gedankenmodell eines Computers - eben die Turingmaschine - entwickelt, um den Begriff der Berechenbarkeit zu fassen.
+Das Ergebnis kann knapp in zwei Aussagen genannt werden:
+\\
+\glqq Alles, was berechenbar ist, ist durch eine Turingmaschine berechenbar.
+Alles, was nicht durch eine Turingmaschine berechenbar ist, ist überhaupt nicht berechenbar.\grqq
+\vspace{30pt}
+
+	\section*{Was ist das Halteproblem?}
+	Es gibt in der Informatik kein Programm, das überprüfen kann, ob ein weiteres Programm
+	\\(1)\ldots früher oder später ein Ende hat. 
+	\\(2)\ldots sich in eine Endlosschleife begibt und somit nie ans Ende kommt.
+
+	\par
+	\noindent Dieses Problem wird in der Informatik als \textbf{Halteproblem} bezeichnet und ist allgemein nicht lösbar – es kann so ein Programm nicht geben, egal wie gut Computer noch werden. Für spezielle Sonderfälle, etwa Programme, die sich an bestimmte Vorgaben halten, ist es oft lösbar. Aber eben nicht, wenn es um beliebige Programme geht.
+
+\newpage
+
+	\subsection*{\textit{Beispiel}}
+	Zum veranschaulichen folgen nun vier Beispielprogramme.\\
+	
+	\begin{center}
+		\ttfamily 
+	 ausdrucken(eines Textes):	\\
+     \hspace{-0.5cm} druckt den Text aus	
+	
+	\textnormal{\begin{flushleft}
+	Dieses Programm druckt einen Text lediglich nur einmal aus und ist danach fertig.
+	\end{flushleft}}
+	
+
+	
+	 countdown(von einer Zahl aus):\\
+	 wiederhole solange zahl>0:\\
+	 ausdrucken(der Zahl)\\
+	 \hspace{1.25cm} um\_eins\_verringern(die Zahl)\\
+
+\textnormal{\begin{flushleft}
+An diesem Programm erkennt man, wie lange es bis zum Stillstand braucht, beispielsweise durchläuft es 3 mal die Schleife, wenn man die Zahl 3 übernimmt.\\
+Wichtig: Dieses Programm kommt früher oder später zu einem Ende.
+\end{flushleft}}
+
+\vspace{2pt}
+	
+	 endlosdrucken(eines Textes): \\
+	 \hspace{3.5cm} wiederhole solange Textlänge größer als -1: \\	 	 \hspace{0.5cm} ausdrucken(des Textes)
+	 
+\textnormal{\begin{flushleft}
+Hier ist zu sehen, dass beim Durchlaufen der Schleife das Programm nicht zu einem Ende kommt, da die Bedingung nie \ttfamily{false} \textnormal{sein wird. \\
+Wichtig: Dieses Programm wird nie zu einem Ende kommen, egal mit welchem Starttext man beginnt.\\
+Dabei gibt es auch eine Spezialfall, bei dem es vom Startwert abhängig ist, ob das Programm zu einem Ende kommt oder nicht:}
+\end{flushleft}}	 
+	 manchmalprogramm(text):\\
+\hspace{2.5cm}	 wiederhole solange Textlänge > 4: \\
+\hspace{0.2cm}	 ausdrucken(text)
+	 
+\textnormal{\begin{flushleft}
+Dieses Programm druckt den Eingabetext ohne Ende aus und kommt nie zu einem Ende, außer der Eingabetext ist kürzer als 4 Zeichen lang. 
+\end{flushleft}}	 
+	 
+	 
+	 	 	\newpage
+	 	\subsubsection*{\textit{Der Beweis}}
+	 	
+	 	\begin{flushleft}
+    	 		\textnormal{Nehmen wir an es gäbe ein solches Programm, das überprüfen kann, ob ein weiteres Programm anhalten wird oder nicht, dabei gibt man dem Programm zwei Parameter. Der erste Parameter gibt das Programm vor, das getestet werden soll und der zweite Parameter gibt den Startwert für das Programm vor, da das Ergebnis vom Startwert abhängig sein kann.\\
+    	 		So würde das Programm aussehen:}\\
+    	 	\end{flushleft}
+    	 	
+    	 	
+    	 	anhaltechecker(eingabeprogramm, eingabewert):\\
+    	 	$[$rechnen, rechnen, rechnen$]$ \\
+    	 	wenn das Programm mit diesem Startwert anhalten wird:\\
+    	 	ausgeben $($"Ja, wird anhalten!" $)$ \\
+    	 \hspace{-3.5cm}	ergebnis: wahr \\
+    	 \hspace{-6cm}	sonst:\\
+    	 \hspace{1cm}	ausgeben ("Nein, terminiert nicht.")\\
+		\hspace{-3cm}	ergebnis: falsch    	 	
+
+\begin{flushleft}
+\textnormal{Wenn man das aufruft:}
+\end{flushleft}
+
+
+anhaltechecker(countdownprogramm, 10)
+
+\begin{flushleft}
+\textnormal{Dann wird das Programm logischerweise "Ja, wird anhalten!" \, ausgeben, da das Programm tatsächlich zu einem Ende kommt, wenn man das Programm mit einer 10 als Argument aufruft.}
+\end{flushleft}
+
+\begin{flushleft}
+\textnormal{Das folgende Programm würde zu keinem Ende kommen, da das Endlosprogramm tatsächlich nie fertig sein wird und somit wird es "Nein, terminiert nicht." \, ausgeben.}
+\end{flushleft}
+
+
+anhaltechecker(endlosdrucken, "Hallo 13e")
+
+\begin{flushleft}
+\textnormal{Nun ein letztes Beispiel:}
+\end{flushleft}
+
+anhaltechecker(ausdrucken, ausdrucken)
+
+\begin{flushleft}
+\textnormal{Dieses Programm wird "Ja, wird anhalten!" \, ausgeben, da dieses Programm einen beliebigen Text ausdrucken kann, auch wenn es der eigene Programmcode ist und am Ende terminiert es.}
+\end{flushleft}
+
+	
+	 	brainFAQ(eingabeprogramm):\\
+	 	\hspace{2.5cm}	solange anhaltechecker(eingabeprogramm, eingabeprogramm) sagt, dass angehalten wird: \\
+	 	\hspace{0.2cm}	 nichtstun\\
+	 	\hspace{0.2cm} danach:\\
+	 	\hspace{0.2cm}	ausgeben("Fertig.")\\
+	 	
+\begin{flushleft}
+\textnormal{Nun folgt der Trick: Das Programm brainFAQ nimmt ein Programm als Eingabewert, und leitet es weiter an unser \glqq Anhaltechecker\grqq -Programm. Das wird dann auf das Programm selbst als Eingabewert geprüft. \newline Wenn man zum Beispiel das aufruft:} \ttfamily{brainFAQ(ausdruckprogramm)} \textnormal{, dann wird zuerst}  \ttfamily{anhaltechecker(ausdruckprogramm, ausdruckprogramm)} \textnormal{aufgerufen, und solange das zu einem Ende kommt (was es tut, siehe oben), kommt das brainFAQprogramm genau \textbf{nicht} zu einem Ende.\newline Wenn man dagegen das aufrufen würde:}  \ttfamily{brainFAQ(endlosprogramm)} \textnormal{, dann würde zuerst} \ttfamily {anhaltechecker(endlosprogramm, endlosprogramm)}\textnormal{ aufgerufen werden und da das Endlosdruckprogramm nicht zu einem Ende kommt (sondern nur endlos den Programmtext ausdrucken würde), würde} \ttfamily {brainFAQ} \textnormal{das eben schon tun und ausgeben: \glqq Fertig.\grqq
+\newline Doch was passiert, wenn man folgendes aufruft?}   
+\end{flushleft}
+ 
+brainFAQ(brainFAQ)\\
+
+\begin{flushleft}
+	\textnormal{Das \glqq BrainFAQ\grqq-Programm würde seinerseits} \ttfamily{anhaltechecker(brainFAQ,brainFAQ)} \textnormal{aufrufen und wenn das ausgibt, dass} \ttfamily{brainFAQ(brainFAQ)} \textnormal{anhält, würde es nicht anhalten. Und wenn es ausgibt, dass es nicht anhält, würde es anhalten. Das ist ein nicht auflösbarer \textbf{Widerspruch}. Also muss eine der Prämissen falsch sein, und das kann nur die sein, dass es so ein Programm wie den Anhaltechecker gibt.\\Der Widerspruch beweist, dass das Programm \glqq Anhaltechecker\grqq \, nicht existiert.}
+\end{flushleft}
+	\end{center}
+
+	 
+\subsection*{\textit{Fazit}}
+	\vspace{10pt}
+	\begin{itemize}%[leftmargin=1em]
+		\renewcommand{\labelitemi}{$\Rightarrow$}
+	\item Es gibt Programme die terminieren und andere nicht (gefangen in der Endlosschleife).
+	\item In manchen Programmen hängt es auch vom Eingabewert ab, ob es terminiert oder nicht.
+	\item Bei einfachen Programmen ist es einfacher zu erkennen, wann sie terminieren.
+	\item Bei komplizierten Programmen ist es schwieriger oder unmöglich.
+	\end{itemize}	 
+
+\end{document}
